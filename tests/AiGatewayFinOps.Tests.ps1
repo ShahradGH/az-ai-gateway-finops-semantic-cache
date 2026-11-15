@@ -54,6 +54,28 @@ Describe 'AI Gateway FinOps: Token-Rate Governance & Semantic Caching Verificati
             $res = & $script:CacheEvalScript -CacheEvalCase $tampered
             $res.Decision | Should -Be 'DENY_CROSS_TENANT_PARTITION'
         }
+
+        It 'Fails closed when -UseLiveFoundry is set without -FoundryEndpoint and supports mocked live Foundry REST call' {
+            $case = $script:Cases | Where-Object { $_.caseId -eq 'CACHE-201' }
+            { & $script:CacheEvalScript -CacheEvalCase $case -UseLiveFoundry } | Should -Throw '*FoundryEndpoint*'
+
+            Mock Invoke-RestMethod {
+                return [PSCustomObject]@{
+                    choices = @(
+                        [PSCustomObject]@{
+                            message = [PSCustomObject]@{
+                                content = '{"decision":"CACHE_HIT_SERVE_FROM_REDIS","rationale":"Clean prompt within isolated tenant partition."}'
+                            }
+                        }
+                    )
+                }
+            }
+
+            $res = & $script:CacheEvalScript -CacheEvalCase $case -UseLiveFoundry -FoundryEndpoint 'https://contoso-foundry.openai.azure.com' -FoundryApiKey 'test-key'
+            $res.InferenceMode | Should -Be 'LIVE_FOUNDRY'
+            $res.Decision | Should -Be 'CACHE_HIT_SERVE_FROM_REDIS'
+            Should -Invoke Invoke-RestMethod -Times 1
+        }
     }
 
     Context 'Token Chargeback Classifier & APIM REST Policy Sync' {
