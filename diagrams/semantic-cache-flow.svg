@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      .title { font: 700 30px 'Segoe UI', system-ui, sans-serif; fill: #f8fafc; }
+      .subtitle { font: 400 17px 'Segoe UI', system-ui, sans-serif; fill: #94a3b8; }
+      .actor { font: 700 16px 'Segoe UI', system-ui, sans-serif; fill: #f1f5f9; text-anchor: middle; }
+      .actor-sub { font: 400 12px 'Cascadia Code', Consolas, monospace; fill: #7dd3fc; text-anchor: middle; }
+      .msg { font: 600 14px 'Segoe UI', system-ui, sans-serif; fill: #e2e8f0; }
+      .proto { font: 600 12px 'Cascadia Code', Consolas, monospace; fill: #38bdf8; }
+      .branch-title { font: 700 14px 'Segoe UI', system-ui, sans-serif; fill: #f8fafc; }
+    </style>
+    <marker id="arr-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arr-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#0a1128"/>
+  <text x="64" y="64" class="title">Semantic Cache Isolation &amp; Token-Rate Governance Sequence</text>
+  <text x="64" y="94" class="subtitle">Entra Workload JWT Validation, Cache-Poisoning Quarantine, Redis Vector Hit (&lt; 8 ms), and PTU/PAYGO Spillover</text>
+
+  <!-- Actors -->
+  <g>
+    <rect x="75" y="130" width="230" height="72" rx="8" fill="#172554" stroke="#38bdf8" stroke-width="2"/>
+    <text x="190" y="162" class="actor">Workload Copilot</text>
+    <text x="190" y="184" class="actor-sub">Entra JWT (azp claim)</text>
+    <line x1="190" y1="202" x2="190" y2="990" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
+
+    <rect x="375" y="130" width="240" height="72" rx="8" fill="#172554" stroke="#38bdf8" stroke-width="2"/>
+    <text x="495" y="162" class="actor">APIM AI Gateway</text>
+    <text x="495" y="184" class="actor-sub">172.21.4.10 (Token Limit)</text>
+    <line x1="495" y1="202" x2="495" y2="990" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
+
+    <rect x="685" y="130" width="240" height="72" rx="8" fill="#172554" stroke="#a855f7" stroke-width="2"/>
+    <text x="805" y="162" class="actor">AI Cache Guard</text>
+    <text x="805" y="184" class="actor-sub">Poison + PII + Partition</text>
+    <line x1="805" y1="202" x2="805" y2="990" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
+
+    <rect x="995" y="130" width="240" height="72" rx="8" fill="#172554" stroke="#10b981" stroke-width="2"/>
+    <text x="1115" y="162" class="actor">Managed Redis</text>
+    <text x="1115" y="184" class="actor-sub">172.21.6.20 (Vector)</text>
+    <line x1="1115" y1="202" x2="1115" y2="990" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
+
+    <rect x="1305" y="130" width="240" height="72" rx="8" fill="#172554" stroke="#f59e0b" stroke-width="2"/>
+    <text x="1425" y="162" class="actor">Foundry PTU / PAYGO</text>
+    <text x="1425" y="184" class="actor-sub">172.21.8.30 (LLM)</text>
+    <line x1="1425" y1="202" x2="1425" y2="990" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
+
+    <rect x="1615" y="130" width="230" height="72" rx="8" fill="#172554" stroke="#6366f1" stroke-width="2"/>
+    <text x="1730" y="162" class="actor">Teams FinOps Loop</text>
+    <text x="1730" y="184" class="actor-sub">Graph v2.x Card</text>
+    <line x1="1730" y1="202" x2="1730" y2="990" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
+  </g>
+
+  <!-- Step 1 -->
+  <line x1="190" y1="255" x2="495" y2="255" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-c)"/>
+  <text x="210" y="244" class="msg">1. POST /chat/completions + Bearer JWT</text>
+  <text x="210" y="274" class="proto">validate-azure-ad-token + azure-openai-token-limit</text>
+
+  <!-- Step 2 -->
+  <line x1="495" y1="325" x2="805" y2="325" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arr-c)"/>
+  <text x="515" y="314" class="msg">2. Evaluate Cache Eligibility &amp; Partition</text>
+
+  <!-- Guardrails Alt Box -->
+  <rect x="470" y="360" width="700" height="235" rx="10" fill="#0f172a" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="490" y="388" class="branch-title">ALT: Security &amp; Cache-Hit Gates</text>
+
+  <line x1="805" y1="428" x2="495" y2="428" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arr-r)"/>
+  <text x="515" y="416" class="msg">3a. Poisoning / Cross-Tenant Key -&gt; QUARANTINE (HTTP 403)</text>
+
+  <line x1="805" y1="490" x2="1425" y2="490" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arr-a)"/>
+  <text x="825" y="478" class="msg">3b. PII Flagged -&gt; BYPASS_CACHE_PII_BOUNDARY (Direct PTU)</text>
+
+  <line x1="805" y1="555" x2="1115" y2="555" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-e)"/>
+  <text x="825" y="543" class="msg">3c. Clean Prompt -&gt; Cosine Lookup (&gt;= 0.92)</text>
+  <text x="825" y="573" class="proto">CACHE_HIT_SERVE_FROM_REDIS (&lt; 8 ms | 0 PTU Tokens)</text>
+
+  <!-- Step 4: Cache Miss -> Foundry PTU -->
+  <line x1="1115" y1="650" x2="1425" y2="650" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arr-a)"/>
+  <text x="1135" y="638" class="msg">4. Cache Miss (&lt; 0.92) -&gt; Route to Foundry PTU Pool</text>
+
+  <line x1="1425" y1="715" x2="1115" y2="715" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-c)"/>
+  <text x="1135" y="703" class="msg">5. Store embedding + response in tenant partition (TTL 3600s)</text>
+
+  <!-- Step 6: FinOps Classifier & Teams Alert -->
+  <line x1="495" y1="800" x2="1730" y2="800" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arr-a)"/>
+  <text x="520" y="788" class="msg">6. BurnRatio &gt;= 0.85 -&gt; Dispatch Teams FinOps Adaptive Card (Graph v1.0)</text>
+  <text x="520" y="818" class="proto">llm-emit-token-metric -&gt; Invoke-TokenChargebackClassifier.ps1</text>
+
+  <line x1="495" y1="890" x2="190" y2="890" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-e)"/>
+  <text x="210" y="878" class="msg">7. Return Completion + x-ratelimit-remaining-tokens</text>
+
+  <text x="64" y="1038" class="subtitle">Contoso Sovereign Platform | AI Gateway FinOps Sequence</text>
+</svg>

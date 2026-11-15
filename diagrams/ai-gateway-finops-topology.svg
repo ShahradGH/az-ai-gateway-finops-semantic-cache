@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      .title { font: 700 30px 'Segoe UI', system-ui, sans-serif; fill: #f8fafc; }
+      .subtitle { font: 400 17px 'Segoe UI', system-ui, sans-serif; fill: #94a3b8; }
+      .zone-label { font: 700 15px 'Segoe UI', system-ui, sans-serif; fill: #38bdf8; letter-spacing: 1px; }
+      .box-title { font: 700 17px 'Segoe UI', system-ui, sans-serif; fill: #f1f5f9; }
+      .box-sub { font: 400 13px 'Segoe UI', system-ui, sans-serif; fill: #cbd5e1; }
+      .mono { font: 600 12px 'Cascadia Code', Consolas, monospace; fill: #7dd3fc; }
+      .badge { font: 700 12px 'Segoe UI', system-ui, sans-serif; fill: #0a1128; }
+      .edge-label { font: 600 13px 'Segoe UI', system-ui, sans-serif; fill: #e2e8f0; }
+    </style>
+    <marker id="arr-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arr-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#0a1128"/>
+  <text x="64" y="64" class="title">AI Gateway FinOps: Token-Rate Governance &amp; Semantic Caching Topology</text>
+  <text x="64" y="94" class="subtitle">Zero-Declarative-IaC Control Plane | Azure APIM AI Gateway + Azure Managed Redis + Foundry PTU/PAYGO + Graph FinOps</text>
+
+  <!-- Enclave 1: Workload Identity Consumers -->
+  <rect x="64" y="135" width="380" height="840" rx="14" fill="#0f172a" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="86" y="168" class="zone-label">ENTRA WORKLOAD CONSUMERS</text>
+
+  <rect x="92" y="205" width="324" height="180" rx="10" fill="#172554" stroke="#38bdf8" stroke-width="2"/>
+  <text x="112" y="238" class="box-title">Retail Support Copilot</text>
+  <text x="112" y="264" class="mono">BU: contoso-retail-support</text>
+  <text x="112" y="290" class="mono">azp: 11111111-...-555501</text>
+  <text x="112" y="316" class="box-sub">High-repeatability KB queries</text>
+  <rect x="112" y="338" width="185" height="24" rx="4" fill="#10b981"/>
+  <text x="122" y="355" class="badge">SEMANTIC CACHE TARGET</text>
+
+  <rect x="92" y="425" width="324" height="180" rx="10" fill="#172554" stroke="#f59e0b" stroke-width="2"/>
+  <text x="112" y="458" class="box-title">Wealth Advisory Agent</text>
+  <text x="112" y="484" class="mono">BU: contoso-wealth-advisory</text>
+  <text x="112" y="510" class="mono">azp: 11111111-...-555502</text>
+  <text x="112" y="536" class="box-sub">Regulated PII / Client Portfolios</text>
+  <rect x="112" y="558" width="195" height="24" rx="4" fill="#f59e0b"/>
+  <text x="122" y="575" class="badge">BYPASS CACHE (PII GUARD)</text>
+
+  <rect x="92" y="645" width="324" height="295" rx="10" fill="#111c38" stroke="#64748b" stroke-width="1.5"/>
+  <text x="112" y="678" class="box-title">PowerShell Policy Sync</text>
+  <text x="112" y="704" class="mono">Invoke-ApimAiGatewayPolicySync.ps1</text>
+  <text x="112" y="734" class="box-sub">Updates APIM XML via ARM REST:</text>
+  <text x="112" y="762" class="mono">• azure-openai-token-limit</text>
+  <text x="112" y="788" class="mono">• semantic-cache-lookup/store</text>
+  <text x="112" y="814" class="mono">• llm-emit-token-metric</text>
+  <rect x="112" y="860" width="215" height="24" rx="4" fill="#38bdf8"/>
+  <text x="122" y="877" class="badge">INVOKE-AZRESTMETHOD</text>
+
+  <!-- Enclave 2: Private VNet 172.21.0.0/16 -->
+  <rect x="495" y="135" width="850" height="840" rx="14" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="518" y="168" class="zone-label">AI GATEWAY VNET (172.21.0.0/16) — PRIVATE ENDPOINTS</text>
+
+  <rect x="525" y="205" width="790" height="205" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="548" y="238" class="box-title">Azure API Management AI Gateway (172.21.4.10)</text>
+  <text x="548" y="264" class="mono">Entra JWT Validation (azp claim) + Per-BU TPM Rate Limiter + Token Metric Emitter</text>
+
+  <rect x="548" y="286" width="235" height="102" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="562" y="314" class="box-title">JWT &amp; TPM Quota</text>
+  <text x="562" y="338" class="mono">counter-key: azp</text>
+  <text x="562" y="362" class="box-sub">429 Cap / Spillover</text>
+
+  <rect x="802" y="286" width="245" height="102" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="816" y="314" class="box-title">Cache Guard AI</text>
+  <text x="816" y="338" class="mono">Poison + PII Filter</text>
+  <text x="816" y="362" class="box-sub">Tenant Partition Check</text>
+
+  <rect x="1066" y="286" width="225" height="102" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="1080" y="314" class="box-title">PTU Load Balancer</text>
+  <text x="1080" y="338" class="mono">Priority Backend Pool</text>
+  <text x="1080" y="362" class="box-sub">PTU -&gt; PAYGO Spillover</text>
+
+  <!-- Redis Vector Cache -->
+  <rect x="525" y="455" width="375" height="230" rx="10" fill="#172554" stroke="#10b981" stroke-width="2"/>
+  <text x="548" y="490" class="box-title">Azure Managed Redis (172.21.6.20)</text>
+  <text x="548" y="516" class="mono">Semantic Vector Index | Cosine &gt;= 0.92</text>
+  <text x="548" y="546" class="box-sub">Isolated tenant partitions:</text>
+  <text x="548" y="572" class="mono">contoso-retail-support::kb-v4</text>
+  <text x="548" y="598" class="mono">contoso-engineering-copilot::dev-v1</text>
+  <rect x="548" y="630" width="210" height="24" rx="4" fill="#10b981"/>
+  <text x="560" y="647" class="badge">CACHE HIT LATENCY &lt; 8 ms</text>
+
+  <!-- Foundry PTU + PAYGO -->
+  <rect x="940" y="455" width="375" height="230" rx="10" fill="#172554" stroke="#f59e0b" stroke-width="2"/>
+  <text x="963" y="490" class="box-title">Azure AI Foundry Model Backends</text>
+  <text x="963" y="516" class="mono">Private Endpoint: 172.21.8.30</text>
+  <text x="963" y="546" class="box-sub">Primary: Provisioned Throughput (PTU)</text>
+  <text x="963" y="572" class="box-sub">Overflow: Pay-As-You-Go (PAYGO) Pool</text>
+  <text x="963" y="598" class="mono">Embeddings: text-embedding-3-large</text>
+  <rect x="963" y="630" width="220" height="24" rx="4" fill="#f59e0b"/>
+  <text x="975" y="647" class="badge">CACHE MISS ~ 450 ms p95</text>
+
+  <!-- Chargeback Classifier -->
+  <rect x="525" y="730" width="790" height="210" rx="10" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="548" y="764" class="box-title">AI Subcomponent: Semantic Cache Evaluator &amp; Token Chargeback Classifier</text>
+  <text x="548" y="790" class="mono">ai/Invoke-SemanticCacheEvaluator.ps1 | ai/Invoke-TokenChargebackClassifier.ps1</text>
+  <text x="548" y="822" class="box-sub">• Computes net backend TPM (ObservedTPM - CacheSavedTPM) against AllocatedTpmQuota</text>
+  <text x="548" y="848" class="box-sub">• Triggers ALERT_FINOPS_QUOTA_APPROACHING (&gt;= 85% burn) or THROTTLE_429_AND_SPILLOVER_PAYGO (&gt;= 100%)</text>
+  <text x="548" y="874" class="box-sub">• Enforces zero-leak cache-poisoning quarantine on instruction-override prompts</text>
+
+  <!-- Enclave 3: FinOps Observability & Graph -->
+  <rect x="1395" y="135" width="460" height="840" rx="14" fill="#0f172a" stroke="#6366f1" stroke-width="2"/>
+  <text x="1418" y="168" class="zone-label">FINOPS &amp; GRAPH GOVERNANCE</text>
+
+  <rect x="1425" y="205" width="400" height="320" rx="10" fill="#172554" stroke="#6366f1" stroke-width="2"/>
+  <text x="1448" y="238" class="box-title">Microsoft Graph v2.x FinOps Alerts</text>
+  <text x="1448" y="264" class="mono">graph/Send-FinOpsQuotaAlert.ps1</text>
+  <text x="1448" y="294" class="box-sub">POST /v1.0/teams/{id}/channels/{id}/messages</text>
+  <text x="1448" y="324" class="box-sub">Adaptive Card v1.5 shows:</text>
+  <text x="1448" y="352" class="mono">• WorkloadAppId &amp; CostCentre</text>
+  <text x="1448" y="378" class="mono">• CacheSavedTpm vs NetBackendTpm</text>
+  <text x="1448" y="404" class="mono">• Approve PAYGO / Enforce 429 Cap</text>
+  <rect x="1448" y="445" width="235" height="24" rx="4" fill="#38bdf8"/>
+  <text x="1460" y="462" class="badge">FINOPS HUMAN APPROVAL</text>
+
+  <rect x="1425" y="570" width="400" height="370" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="1448" y="604" class="box-title">Azure Monitor FinOps KQL</text>
+  <text x="1448" y="630" class="mono">queries/Apim-SemanticCache-FinOps.kql</text>
+  <text x="1448" y="664" class="box-sub">Aggregates 15-min bins by TenantBU:</text>
+  <text x="1448" y="694" class="mono">• CacheHitRatioPct</text>
+  <text x="1448" y="720" class="mono">• Throttled429 Count</text>
+  <text x="1448" y="746" class="mono">• AvgBackendLatencyMs</text>
+  <rect x="1448" y="810" width="225" height="24" rx="4" fill="#10b981"/>
+  <text x="1460" y="827" class="badge">SHOWBACK / CHARGEBACK</text>
+
+  <!-- Edges -->
+  <line x1="416" y1="290" x2="525" y2="290" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-c)"/>
+  <line x1="416" y1="510" x2="525" y2="350" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arr-a)"/>
+  <line x1="712" y1="410" x2="712" y2="455" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-e)"/>
+  <line x1="1128" y1="410" x2="1128" y2="455" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arr-a)"/>
+  <line x1="1315" y1="820" x2="1425" y2="390" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-c)"/>
+  <line x1="1315" y1="320" x2="1425" y2="720" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-c)"/>
+
+  <text x="64" y="1038" class="subtitle">Contoso Sovereign Platform Reference Architecture | Synthetic RFC 1918 &amp; Entra Workload ID Fixtures</text>
+</svg>

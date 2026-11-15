@@ -1,0 +1,17 @@
+// Apim-SemanticCache-FinOps.kql
+// Correlates Azure APIM AI Gateway token metrics, semantic cache hits, and 429 spillover events by Entra Workload ID.
+ApiManagementGatewayLogs
+| where TimeGenerated > ago(24h)
+| where BackendId has "foundry" or ApiId has "ai-gateway"
+| extend WorkloadAppId = tostring(RequestHeaders["x-ms-client-principal-id"]),
+         TenantBu = tostring(RequestHeaders["x-contoso-tenant-bu"]),
+         CacheStatus = tostring(ResponseHeaders["x-cache-status"]),
+         RemainingTpm = toint(ResponseHeaders["x-ratelimit-remaining-tokens"])
+| summarize
+    TotalRequests = count(),
+    CacheHits = countif(CacheStatus == "HIT"),
+    Throttled429 = countif(ResponseCode == 429),
+    AvgBackendLatencyMs = avg(BackendTime)
+    by bin(TimeGenerated, 15m), TenantBu, WorkloadAppId
+| extend CacheHitRatioPct = round((todouble(CacheHits) / todouble(TotalRequests)) * 100.0, 2)
+| order by TimeGenerated desc, Throttled429 desc
